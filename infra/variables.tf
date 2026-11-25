@@ -11,5 +11,5 @@ variable "project" {
 variable "region" {
   description = "Région AWS (la même que le bootstrap)."
   type        = string
-  default     = "eu-west-1"
+  default     = "eu-north-1"
 }

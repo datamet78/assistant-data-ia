@@ -15,10 +15,11 @@ variable "project" {
 variable "region" {
   description = "Région AWS. Europe pour respecter le RGPD."
   type        = string
-  # eu-west-1 (Irlande) : la région européenne qui reçoit en général les
-  # nouveaux services (Bedrock, S3 Vectors...) en premier. Choix justifié
-  # dans docs/adr/0001-fondations.md.
-  default = "eu-west-1"
+  # eu-north-1 (Stockholm) : c'est la Région imposée par AWS aux comptes
+  # « projet » européens (nouvelle expérience d'inscription). Elle doit
+  # correspondre à la Région de ton projet, visible sur settings.aws.com.
+  # Choix justifié dans docs/adr/0001-fondations.md.
+  default = "eu-north-1"
 }
 
 variable "github_owner" {

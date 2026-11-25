@@ -40,6 +40,10 @@ concurrency:
 env:
   TF_IN_AUTOMATION: "true" # adapte les messages Terraform à un usage en CI
   TF_INPUT: "false" # Terraform ne pose jamais de question (sinon il bloquerait)
+  # Toute variable d'environnement "TF_VAR_<nom>" remplit la variable
+  # Terraform <nom>. Ici : la Région vient de la variable GitHub AWS_REGION,
+  # ce qui évite qu'elle diffère entre le pipeline et le code.
+  TF_VAR_region: ${{ vars.AWS_REGION }}
 
 jobs:
   # ===========================================================================

@@ -2,5 +2,5 @@
 github_owner = "votre-compte-github"
 github_repo  = "assistant-data-ia"
 alert_email  = "vous@exemple.fr"
-# region     = "eu-west-1"
+# region     = "eu-north-1"
 # budget_usd = 10

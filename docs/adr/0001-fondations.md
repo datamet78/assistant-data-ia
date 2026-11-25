@@ -34,10 +34,17 @@ Le bucket du state, la fédération OIDC et les rôles IAM sont créés depuis l
 
 **Compromis assumé :** `ReadOnlyAccess` est large (il donne notamment la lecture des objets S3). Le risque est limité ici, car il s'agit de données publiques et d'un compte dédié au projet. Une évolution possible consiste à restreindre ce rôle aux seuls services du projet.
 
-### 6. Région eu-west-1 (Irlande)
-**Choisi :** `eu-west-1`.
-**Écarté :** *eu-west-3 (Paris)* : plus proche, mais les nouveaux services (Bedrock, S3 Vectors) arrivent en général d'abord en Irlande ou à Francfort. Dans les deux cas, les données restent dans l'UE (RGPD).
-**À vérifier à l'étape 4 :** la disponibilité de S3 Vectors et des modèles Bedrock visés dans cette région.
+### 6. Région eu-north-1 (Stockholm)
+**Contexte :** le compte a été créé avec la nouvelle expérience AWS par « projets ». AWS y attribue à chaque projet **une seule Région**, selon le pays de l'adresse de contact. Pour l'Europe, c'est `eu-north-1`.
+**Choisi :** `eu-north-1`. Les données restent dans l'UE (RGPD).
+**Écarté :** *eu-west-1 (Irlande)*, le choix initial, car elle offre en général les nouveaux services plus tôt. L'utiliser exigerait d'activer les « fonctionnalités avancées » (AWS Organizations), ce qui est inutile à ce stade.
+**À vérifier :**
+- étape 3 : les modèles Bedrock disponibles dans cette Région, avec les profils d'inférence `eu.` si besoin ;
+- étape 4 : la disponibilité de S3 Vectors ;
+- étape 3 : les fonctionnalités CloudFront qui créent des ressources hors Région (certificat pour un nom de domaine personnalisé, WAF) sont indisponibles. Le domaine par défaut `*.cloudfront.net` suffit.
+
+### 6 bis. Plan gratuit AWS
+Le compte est sur le **plan gratuit** : 100 $ de crédits, valable 6 mois au plus. À son expiration, le compte et ses ressources sont suspendus. Il faudra passer au plan payant avant cette échéance, ou plus tôt si un service nécessaire (par exemple Bedrock) est bloqué.
 
 ### 7. Chiffrement SSE-S3
 **Choisi :** SSE-S3 (AES-256, clés gérées par AWS, gratuit).

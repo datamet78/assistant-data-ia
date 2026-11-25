@@ -47,7 +47,7 @@ docs/                 Décisions d'architecture (ADR) et guides
 - Deux rôles distincts : **lecture seule** pour les pull requests, **déploiement** réservé à `main`.
 - Droits de déploiement limités aux ressources du projet (moindre privilège).
 - Buckets chiffrés, versionnés, sans accès public, HTTPS obligatoire.
-- Données hébergées en Europe (`eu-west-1`).
+- Données hébergées en Europe (`eu-north-1`, Stockholm).
 
 ## Coûts
 Alerte budget à 10 $/mois (e-mails à 50 %, 80 % et 100 % prévu). Estimation détaillée et section FinOps à venir.

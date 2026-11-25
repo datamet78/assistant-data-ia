@@ -13,13 +13,16 @@ Durée estimée : 2 à 3 heures la première fois.
 Tu as aussi besoin d'un compte AWS et d'un compte GitHub.
 
 ## 1. Se connecter à AWS en local
-Pour le bootstrap, il te faut des identifiants **administrateur**, qui ne doivent pas être ceux de l'utilisateur root. La méthode recommandée est IAM Identity Center :
+Le compte utilise la nouvelle expérience AWS par « projets ». La CLI se connecte avec `aws login`, qui demande l'AWS CLI 2.32 ou plus récente. Il n'y a ni utilisateur IAM ni Identity Center à créer :
 ```bash
-aws configure sso          # suivre les questions ; nom de profil : dataia-admin
-aws sso login --profile dataia-admin
+aws --version                          # doit afficher 2.32 ou plus
+aws login --profile dataia-admin       # ouvre le navigateur : connecte-toi comme sur la console
+aws configure set region eu-north-1 --profile dataia-admin
 export AWS_PROFILE=dataia-admin
-aws sts get-caller-identity   # doit afficher ton numéro de compte
+aws sts get-caller-identity            # doit afficher ton numéro de compte
 ```
+Les identifiants sont temporaires et renouvelés automatiquement. Si la session expire, relance `aws login --profile dataia-admin`.
+Vérifie que la Région de ton projet est bien `eu-north-1` sur https://settings.aws.com, rubrique *Project > Overview > Additional Info*.
 
 ## 2. Créer le dépôt GitHub
 1. Sur GitHub, crée un dépôt **vide** nommé `assistant-data-ia` (public si tu veux le montrer).
