@@ -1,0 +1,4 @@
+# Outils de développement (tests et qualité), installés par le pipeline :
+#   pip install -r requirements-dev.txt
+pytest>=8
+ruff>=0.6

@@ -1,0 +1,26 @@
+# Fichier de configuration standard d'un projet Python.
+# Il décrit le projet et règle les outils (pytest, ruff) au même endroit.
+
+[project]
+name = "dataia"
+version = "0.1.0"
+description = "Assistant data & IA sur AWS"
+requires-python = ">=3.12"  # même version que les Lambdas plus tard
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]  # permet "from dataia... import" sans installer le paquet
+testpaths = ["tests"]  # où chercher les tests
+
+# ruff = « linter » : il repère les erreurs et le code mal écrit
+# sans l'exécuter, et vérifie le formatage.
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# Familles de règles activées :
+#   E/F : erreurs de base (syntaxe, variables inutilisées...)
+#   I   : ordre des imports
+#   B   : pièges courants (bugbear)
+#   UP  : syntaxe Python moderne
+select = ["E", "F", "I", "B", "UP"]

@@ -1,0 +1,27 @@
+# --- Terraform ---------------------------------------------------------------
+# Dossier des providers téléchargés (lourd, régénéré par "terraform init")
+.terraform/
+# State local du bootstrap : contient les détails de tes ressources.
+# À sauvegarder ailleurs (gestionnaire de mots de passe, disque chiffré...).
+*.tfstate
+*.tfstate.*
+# Plans enregistrés (peuvent contenir des valeurs sensibles)
+tfplan
+plan.txt
+# Valeurs personnelles (e-mail, nom du bucket...)
+*.tfvars
+!*.tfvars.example
+backend.hcl
+# Le fichier .terraform.lock.hcl, lui, DOIT être commité : il fige les
+# versions exactes des providers pour que le pipeline utilise les mêmes.
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# --- Divers ------------------------------------------------------------------
+.DS_Store
+.env
