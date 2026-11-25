@@ -58,3 +58,8 @@ Un budget de 10 $/mois, avec des alertes à 50 % et 80 % du réel, et à 100 % d
 - Toute modification d'infrastructure passe par une pull request, avec un plan visible avant la fusion.
 - Ajouter un nouveau service AWS demande d'abord d'élargir le rôle `apply` dans `bootstrap/`, de façon consciente et manuelle.
 - Le state local du bootstrap doit être sauvegardé hors du dépôt.
+
+## Incident rencontré au premier déploiement
+**Symptôme :** `Not authorized to perform sts:AssumeRoleWithWebIdentity`.
+**Cause :** depuis le 15 juillet 2026, GitHub émet pour les nouveaux dépôts des jetons OIDC dont le sujet contient des identifiants numériques (`repo:<owner>@<owner_id>/<repo>@<repo_id>:...`). La politique de confiance attendait l'ancien format `repo:<owner>/<repo>:...`.
+**Correction :** le sujet attendu est construit à partir des identifiants numériques (variables `github_owner_id` et `github_repo_id`). C'est aussi plus sûr : un nom de compte ou de dépôt peut être réutilisé par un tiers, un identifiant numérique jamais.

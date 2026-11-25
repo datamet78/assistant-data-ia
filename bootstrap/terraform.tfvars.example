@@ -1,6 +1,8 @@
 # Copier en terraform.tfvars (ignoré par git) et compléter.
-github_owner = "votre-compte-github"
-github_repo  = "assistant-data-ia"
-alert_email  = "vous@exemple.fr"
-# region     = "eu-north-1"
-# budget_usd = 10
+github_owner    = "datamet78"
+github_repo     = "assistant-data-ia"
+github_owner_id = "12345678"  # voir bootstrap/variables.tf pour les trouver
+github_repo_id  = "987654321"
+alert_email     = "dieneamet@gmail.com"
+region     = "eu-north-1"
+budget_usd = 10

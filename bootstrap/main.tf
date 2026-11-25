@@ -19,8 +19,12 @@ locals {
   # évite les collisions : ex. "dataia-123456789012-tfstate".
   prefix = "${var.project}-${local.account_id}"
 
-  # Forme "propriétaire/dépôt", attendue par les conditions OIDC.
-  repo = "${var.github_owner}/${var.github_repo}"
+  # Préfixe du "sujet" (sub) des jetons OIDC émis par GitHub pour ton dépôt.
+  # Format immuable (dépôts créés après le 15 juillet 2026) :
+  #   repo:<propriétaire>@<id propriétaire>/<dépôt>@<id dépôt>
+  # ex. "repo:datamet78@12345678/assistant-data-ia@987654321"
+  # (L'ancien format, sans les @id, ne correspond plus aux jetons reçus.)
+  repo = "${var.github_owner}@${var.github_owner_id}/${var.github_repo}@${var.github_repo_id}"
 
   # Chemin du fichier de state de infra/ dans le bucket
   # (doit correspondre au "key" de infra/versions.tf).
@@ -167,7 +171,7 @@ data "aws_iam_policy_document" "trust_plan" {
     }
 
     # ... et provenir de ton dépôt. Le champ "sub" (sujet) du jeton vaut
-    # par exemple "repo:alice/assistant-data-ia:pull_request".
+    # par exemple "repo:alice@111/assistant-data-ia@222:pull_request".
     # Sans cette condition, N'IMPORTE QUEL dépôt GitHub pourrait endosser
     # le rôle : c'est l'erreur de configuration OIDC la plus courante.
     condition {

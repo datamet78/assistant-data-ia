@@ -33,6 +33,23 @@ variable "github_repo" {
   default     = "assistant-data-ia"
 }
 
+# Identifiants NUMÉRIQUES du propriétaire et du dépôt sur GitHub.
+# Depuis le 15 juillet 2026, les jetons OIDC des nouveaux dépôts les
+# contiennent (format « immuable ») : un nom peut être réutilisé par
+# quelqu'un d'autre après un renommage, un identifiant numérique jamais.
+# Pour les trouver (dépôt public) :
+#   curl -s https://api.github.com/repos/<owner>/<repo> | grep -m2 '"id":'
+#   -> 1re ligne = id du dépôt, 2e ligne = id du propriétaire
+variable "github_owner_id" {
+  description = "Identifiant numérique du propriétaire GitHub."
+  type        = string
+}
+
+variable "github_repo_id" {
+  description = "Identifiant numérique du dépôt GitHub."
+  type        = string
+}
+
 variable "alert_email" {
   description = "Adresse e-mail qui reçoit les alertes budget."
   type        = string
